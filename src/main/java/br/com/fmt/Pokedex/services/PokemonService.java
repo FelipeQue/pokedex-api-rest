@@ -1,6 +1,7 @@
 package br.com.fmt.Pokedex.services;
 
 import br.com.fmt.Pokedex.dto.CapturedPokemonRequest;
+import br.com.fmt.Pokedex.dto.PokemonResponse;
 import br.com.fmt.Pokedex.dto.SeenPokemonRequest;
 import br.com.fmt.Pokedex.entities.Pokemon;
 import br.com.fmt.Pokedex.repositories.PokemonRepository;
@@ -54,5 +55,11 @@ public class PokemonService {
     }
 
 
+    public PokemonResponse search(Integer number) {
+        Pokemon pokemon = repository
+                .findById(number)
+                .orElseThrow(EntityNotFoundException::new);
 
+        return map(pokemon);
+    }
 }

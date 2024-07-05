@@ -1,6 +1,7 @@
 package br.com.fmt.Pokedex.controllers;
 
 import br.com.fmt.Pokedex.dto.CapturedPokemonRequest;
+import br.com.fmt.Pokedex.dto.PokemonResponse;
 import br.com.fmt.Pokedex.dto.SeenPokemonRequest;
 import br.com.fmt.Pokedex.entities.Pokemon;
 import br.com.fmt.Pokedex.services.PokemonService;
@@ -42,10 +43,11 @@ public class PokemonController {
         pokemonService.delete(number);
     }
 
-//    @GetMapping
-//    public Pokemon list(){
-//
-//    }
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public PokemonResponse search(@PathVariable(name = "id") Integer number){
+        return pokemonService.search(number);
+    }
 
 
 }

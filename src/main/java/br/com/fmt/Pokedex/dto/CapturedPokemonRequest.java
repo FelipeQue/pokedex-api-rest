@@ -10,7 +10,7 @@ public class CapturedPokemonRequest {
     @NotBlank private String description;
     @NotBlank private String imageUrl;
     @NotBlank private String type;
-    @NotBlank private String category; //???
+    @NotBlank private String category;
     @NotBlank private String habitat;
     @NotNull private Double height;
     @NotNull private Double weight;
