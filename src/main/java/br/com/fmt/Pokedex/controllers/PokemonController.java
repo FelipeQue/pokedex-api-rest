@@ -2,6 +2,7 @@ package br.com.fmt.Pokedex.controllers;
 
 import br.com.fmt.Pokedex.dto.CapturedPokemonRequest;
 import br.com.fmt.Pokedex.dto.SeenPokemonRequest;
+import br.com.fmt.Pokedex.entities.Pokemon;
 import br.com.fmt.Pokedex.services.PokemonService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -23,11 +24,28 @@ public class PokemonController {
         pokemonService.addSeen(seenPokemonRequest);
     }
 
-    @PostMapping("/captured")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void addCaptured(@Valid @RequestBody CapturedPokemonRequest capturedPokemonRequest){
-        pokemonService.addCaptured(capturedPokemonRequest);
+    @PutMapping("/seen")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void updateSeen(@Valid @RequestBody SeenPokemonRequest seenPokemonRequest){
+        pokemonService.updateSeen(seenPokemonRequest);
     }
+
+    @PutMapping("/captured")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void updateCaptured(@Valid @RequestBody CapturedPokemonRequest capturedPokemonRequest){
+        pokemonService.updateCaptured(capturedPokemonRequest);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable(name = "id") Integer number){
+        pokemonService.delete(number);
+    }
+
+//    @GetMapping
+//    public Pokemon list(){
+//
+//    }
 
 
 }

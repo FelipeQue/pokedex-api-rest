@@ -11,7 +11,7 @@ public class Pokemon {
 
     @Id
     private int number;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
     private String description;
     @Column(nullable = false)

@@ -2,8 +2,10 @@ package br.com.fmt.Pokedex.services;
 
 import br.com.fmt.Pokedex.dto.CapturedPokemonRequest;
 import br.com.fmt.Pokedex.dto.SeenPokemonRequest;
-import br.com.fmt.Pokedex.mappers.PokemonMapper;
+import br.com.fmt.Pokedex.entities.Pokemon;
 import br.com.fmt.Pokedex.repositories.PokemonRepository;
+import jakarta.persistence.EntityNotFoundException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import static br.com.fmt.Pokedex.mappers.PokemonMapper.map;
@@ -19,13 +21,38 @@ public class PokemonService {
 
 
     public void addSeen(SeenPokemonRequest seenPokemonRequest) {
+        if (repository.existsById(seenPokemonRequest.getNumber())) {
+            throw new DuplicateKeyException("There's already a Pokémon with this number.");
+        }
         repository.save(map(seenPokemonRequest));
     }
 
-    public void addCaptured(CapturedPokemonRequest capturedPokemonRequest){
-        repository.save(map(capturedPokemonRequest));
+    public void updateSeen(SeenPokemonRequest seenPokemonRequest) {
+        Pokemon pokemon = repository
+                .findById(seenPokemonRequest.getNumber())
+                .orElseThrow(EntityNotFoundException::new);
 
+        pokemon.setName(seenPokemonRequest.getName());
+        pokemon.setImageUrl(seenPokemonRequest.getImageUrl());
+        pokemon.setHabitat(seenPokemonRequest.getHabitat());
+
+        repository.save(pokemon);
     }
+
+    public void updateCaptured(CapturedPokemonRequest capturedPokemonRequest){
+        if (!repository.existsById(capturedPokemonRequest.getNumber())) {
+            throw new EntityNotFoundException("This Pokémon isn't in our records.");
+        }
+        repository.save(map(capturedPokemonRequest));
+    }
+
+    public void delete(Integer number) {
+        if (!repository.existsById(number)) {
+            throw new EntityNotFoundException("This Pokémon isn't in our records.");
+        }
+        repository.deleteById(number);
+    }
+
 
 
 }
