@@ -2,12 +2,15 @@ package br.com.fmt.Pokedex.controllers;
 
 import br.com.fmt.Pokedex.dto.CapturedPokemonRequest;
 import br.com.fmt.Pokedex.dto.PokemonResponse;
+import br.com.fmt.Pokedex.dto.PokemonSummaryResponse;
 import br.com.fmt.Pokedex.dto.SeenPokemonRequest;
 import br.com.fmt.Pokedex.entities.Pokemon;
 import br.com.fmt.Pokedex.services.PokemonService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/pokemon")
@@ -47,6 +50,12 @@ public class PokemonController {
     @ResponseStatus(HttpStatus.OK)
     public PokemonResponse search(@PathVariable(name = "id") Integer number){
         return pokemonService.search(number);
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<PokemonSummaryResponse> list(){
+        return pokemonService.list();
     }
 
 

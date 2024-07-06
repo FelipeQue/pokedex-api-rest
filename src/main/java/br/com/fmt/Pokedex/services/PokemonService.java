@@ -2,6 +2,7 @@ package br.com.fmt.Pokedex.services;
 
 import br.com.fmt.Pokedex.dto.CapturedPokemonRequest;
 import br.com.fmt.Pokedex.dto.PokemonResponse;
+import br.com.fmt.Pokedex.dto.PokemonSummaryResponse;
 import br.com.fmt.Pokedex.dto.SeenPokemonRequest;
 import br.com.fmt.Pokedex.entities.Pokemon;
 import br.com.fmt.Pokedex.repositories.PokemonRepository;
@@ -9,7 +10,10 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import static br.com.fmt.Pokedex.mappers.PokemonMapper.map;
+import static br.com.fmt.Pokedex.mappers.PokemonMapper.mapToSummary;
 
 @Service
 public class PokemonService {
@@ -62,4 +66,9 @@ public class PokemonService {
 
         return map(pokemon);
     }
+
+    public List<PokemonSummaryResponse> list() {
+        return mapToSummary(repository.findAll());
+    }
+
 }
