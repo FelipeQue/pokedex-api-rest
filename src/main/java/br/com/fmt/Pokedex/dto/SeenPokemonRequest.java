@@ -5,16 +5,16 @@ import jakarta.validation.constraints.NotNull;
 
 public class SeenPokemonRequest {
 
-    @NotNull private int number;
+    @NotNull private Integer number;
     @NotBlank private String name;
     @NotBlank private String imageUrl;
     @NotBlank private String habitat;
 
-    public int getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 

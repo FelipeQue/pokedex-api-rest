@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 
 public class PokemonResponse {
 
-    private int number;
+    private Integer number;
     private String name;
     private String description;
     private String imageUrl;
@@ -17,11 +17,11 @@ public class PokemonResponse {
     private Double weight;
     private boolean captured;
 
-    public int getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 

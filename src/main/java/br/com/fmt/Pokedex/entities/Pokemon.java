@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class Pokemon {
 
     @Id
-    private int number;
+    private Integer number;
 
     @Column(nullable = false, unique = true)
     private String name;
@@ -33,11 +33,11 @@ public class Pokemon {
     private boolean captured;
 
 
-    public int getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 

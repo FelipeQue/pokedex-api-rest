@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 
 public class CapturedPokemonRequest {
 
-    @NotNull private int number;
+    @NotNull private Integer number;
     @NotBlank private String name;
     @NotBlank private String description;
     @NotBlank private String imageUrl;
@@ -17,11 +17,11 @@ public class CapturedPokemonRequest {
     @NotNull private Double weight;
 
     @NotNull
-    public int getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(@NotNull int number) {
+    public void setNumber(@NotNull Integer number) {
         this.number = number;
     }
 
