@@ -1,9 +1,7 @@
 package br.com.fmt.Pokedex.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import br.com.fmt.Pokedex.enums.TypeEnum;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "pokemon")
@@ -11,17 +9,27 @@ public class Pokemon {
 
     @Id
     private int number;
+
     @Column(nullable = false, unique = true)
     private String name;
+
     private String description;
+
     @Column(nullable = false)
     private String imageUrl;
-    private String type;
+
+    @Enumerated(value = EnumType.STRING)
+    private TypeEnum type;
+
     private String category;
+
     @Column(nullable = false)
     private String habitat;
+
     private Double height;
+
     private Double weight;
+
     private boolean captured;
 
 
@@ -57,11 +65,11 @@ public class Pokemon {
         this.imageUrl = imageUrl;
     }
 
-    public String getType() {
+    public TypeEnum getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(TypeEnum type) {
         this.type = type;
     }
 

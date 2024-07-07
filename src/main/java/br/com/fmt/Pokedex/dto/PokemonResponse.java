@@ -1,5 +1,6 @@
 package br.com.fmt.Pokedex.dto;
 
+import br.com.fmt.Pokedex.enums.TypeEnum;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -9,7 +10,7 @@ public class PokemonResponse {
     private String name;
     private String description;
     private String imageUrl;
-    private String type;
+    private TypeEnum type;
     private String category;
     private String habitat;
     private Double height;
@@ -48,11 +49,11 @@ public class PokemonResponse {
         this.imageUrl = imageUrl;
     }
 
-    public String getType() {
+    public TypeEnum getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(TypeEnum type) {
         this.type = type;
     }
 
